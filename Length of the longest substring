@@ -1,0 +1,21 @@
+class Solution{
+    int longestUniqueSubsttr(String S){
+        HashMap<Character,Integer> map=new HashMap<>();
+        
+        int ans=0;
+        int i=0;
+        for(int j=0;j<S.length();j++)
+        {
+            if(map.containsKey(S.charAt(j)))
+            {
+                i=Math.max(i,map.get(S.charAt(j))+1);
+            }
+            
+            ans=Math.max(ans,j-i+1);
+            
+            map.put(S.charAt(j),j);
+        }
+        
+        return ans;
+    }
+}
