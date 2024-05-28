@@ -1,0 +1,37 @@
+class Solution
+{
+    public static Node removeAllDuplicates(Node head)
+    {
+        //code here
+        HashMap<Integer,Integer> map=new HashMap<>();
+        Node temp=head;
+        while(temp!=null)
+        {
+            if(!map.containsKey(temp.data))
+            {
+                map.put(temp.data,1);
+            }
+            else map.put(temp.data,map.get(temp.data)+1);
+            temp=temp.next;
+        }
+        
+        Node dumm=new Node(-1);
+        dumm.next=head;
+        Node curr=head;
+        Node prev=dumm;
+        
+        while(curr!=null)
+        {
+            if(map.get(curr.data)>1)
+            {
+                prev.next=curr.next;
+            }
+            else prev=curr;
+            
+            curr=curr.next;
+        }
+        
+        return dumm.next;
+        
+    }
+}
