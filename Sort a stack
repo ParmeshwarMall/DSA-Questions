@@ -1,0 +1,17 @@
+class GfG {
+    public Stack<Integer> sort(Stack<Integer> s) {
+        Stack<Integer> temp=new Stack<>();
+        
+        while(s.size()!=0)
+        {
+            int t=s.pop();
+            while(temp.size()>0 && temp.peek()>t)
+            {
+                s.push(temp.pop());
+            }
+            temp.push(t);
+        }
+        
+        return temp;
+    }
+}
