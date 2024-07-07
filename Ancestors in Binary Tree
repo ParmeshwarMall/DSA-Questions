@@ -1,0 +1,21 @@
+class Solution {
+    
+    public boolean helper(Node root,ArrayList<Integer> l,int tar)
+    {
+        if(root==null) return false;
+        if(root.data==tar) return true;
+        
+        if(helper(root.left,l,tar) || helper(root.right,l,tar))
+        {
+            l.add(root.data);
+            return true;
+        }
+        return false;
+    }
+
+    public ArrayList<Integer> Ancestors(Node root, int target) {
+        ArrayList<Integer> l=new ArrayList<>();
+        helper(root,l,target);
+        return l;
+    }
+}
