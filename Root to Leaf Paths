@@ -1,0 +1,25 @@
+class Solution {
+    static void helper(Node root,ArrayList<ArrayList<Integer>> ans,ArrayList<Integer> l)
+    {
+        if(root==null) return;
+        if(root.left==null && root.right==null)
+        {
+            l.add(root.data);
+            ans.add(new ArrayList(l));
+            l.remove(l.size()-1);
+            return;
+        }
+        l.add(root.data);
+        helper(root.left,ans,l);
+        helper(root.right,ans,l);
+        l.remove(l.size()-1);
+    }
+    public static ArrayList<ArrayList<Integer>> Paths(Node root) {
+        // code here
+        
+        ArrayList<ArrayList<Integer>> ans=new ArrayList<>();
+        helper(root,ans,new ArrayList<>());
+        
+        return ans;
+    }
+}
