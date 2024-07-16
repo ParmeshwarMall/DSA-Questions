@@ -1,0 +1,21 @@
+class Solution
+{
+    public static Node tree(int []inOrd,int inlo,int inhigh,int []preOrd,int prelo,int prehigh)
+    {
+        if(prelo>prehigh) return null;
+        Node root=new Node(preOrd[prelo]);
+        int i=inlo;
+        while(inOrd[i]!=preOrd[prelo])
+        {
+            i++;
+        }
+        int ls=i-inlo;
+        root.left=tree(inOrd,inlo,i-1,preOrd,prelo+1,prelo+ls);
+        root.right=tree(inOrd,i+1,inhigh,preOrd,prelo+ls+1,prehigh);
+        return root;
+    }
+    public static Node buildTree(int inorder[], int preorder[], int n)
+    {
+        return tree(inorder,0,n-1,preorder,0,n-1);
+    }
+}
