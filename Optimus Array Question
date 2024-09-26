@@ -1,0 +1,43 @@
+import java.util.Arrays;
+
+class Solution {
+    public static int[] fillArray(int N, int M) {
+        int[] arr = new int[N]; // Initialize the array of length N
+        int sum = 0;            // To keep track of the current sum of integers filled
+        int num = 1;            // The number to be filled at each position
+        
+        // Start filling the array
+        for (int i = 0; i < N; i++) {
+            if (sum + num <= M) {
+                arr[i] = num;
+                sum += num;
+            } else {
+                arr[i] = M - sum; // Fill the remaining sum at this position
+                sum = M;          // Set sum to M as we are done
+                break;            // Exit the loop as we've reached the limit M
+            }
+            
+            num++;  // Increment the number to fill the next position
+
+            // Reset num to 1 if it exceeds N (since it's circular)
+            if (num > N) {
+                num = 1;
+            }
+        }
+        
+        return arr;
+    }
+    
+    public static void main(String[] args) {
+        int N1 = 3, M1 = 6;
+        int N2 = 5, M2 = 8;
+
+        // Example 1
+        int[] result1 = fillArray(N1, M1);
+        System.out.println("Array for N = " + N1 + ", M = " + M1 + ": " + Arrays.toString(result1));
+
+        // Example 2
+        int[] result2 = fillArray(N2, M2);
+        System.out.println("Array for N = " + N2 + ", M = " + M2 + ": " + Arrays.toString(result2));
+    }
+}
