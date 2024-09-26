@@ -1,0 +1,36 @@
+class Solution {
+    static int majority(int arr[])
+    {
+        int count=0;
+        int num=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(count==0)
+            {
+                num=arr[i];
+            }
+            if(num==arr[i])
+            {
+                count++;
+            }
+            else count--;
+        }
+        
+        return num;
+    }
+    
+    static int majorityElement(int arr[]) {
+        // your code here
+        int num=majority(arr);
+        int count=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]==num)
+            {
+                count++;
+            }
+        }
+        if(count>(arr.length)/2) return num;
+        else return -1;
+    }
+}
