@@ -1,0 +1,30 @@
+class Solution {
+    public void helper(int arr[],int i,int tar,List<List<Integer>> ans,List<Integer>l)
+    {
+        if(i>=arr.length)
+        {
+            if(tar==0)
+            {
+                ans.add(new ArrayList<>(l));
+            }
+            return;
+        }
+        if(arr[i]<=tar)
+        {
+            l.add(arr[i]);
+            helper(arr,i+1,tar-arr[i],ans,l);
+            l.remove(l.size()-1);
+        }
+        while(i<arr.length-1 && arr[i]==arr[i+1])
+        {
+            i++;
+        }
+        helper(arr,i+1,tar,ans,l);
+    }
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> ans=new ArrayList<>();
+        Arrays.sort(candidates);
+        helper(candidates,0,target,ans,new ArrayList<>());
+        return ans;
+    }
+}
