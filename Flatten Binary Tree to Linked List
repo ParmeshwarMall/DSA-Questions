@@ -1,0 +1,16 @@
+TreeNode c=root;    // Without using extra space
+        while(c!=null)      // c=current node
+        {                   // pred=predecessor
+            if(c.left!=null)
+            {
+                TreeNode pred=c.left;
+                while(pred.right!=null)
+                {
+                    pred=pred.right;
+                }
+                pred.right=c.right;
+                c.right=c.left;
+                c.left=null;
+            }
+            c=c.right;
+        }
