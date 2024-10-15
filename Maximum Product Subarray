@@ -1,27 +1,25 @@
 class Solution {
-
-    long maxProduct(int[] arr, int n) {
-        
-        long mxProd=arr[0];
-        long currMax=arr[0];
-        long currMin=arr[0];
-        
-        for(int i=1;i<n;i++)
+    public int maxProduct(int[] nums) {
+        int ans=Integer.MIN_VALUE;
+        int prefMul=1;
+        int suffMul=1;
+        int n=nums.length;
+        for(int i=0;i<n;i++)
         {
-            if(arr[i]<0)
+            if(prefMul==0)
             {
-                long temp=currMax;
-                currMax=currMin;
-                currMin=temp;
+                prefMul=1;
             }
-            
-            currMax=Math.max(arr[i],currMax*arr[i]);
-            currMin=Math.min(arr[i],currMin*arr[i]);
-            
-            mxProd=Math.max(mxProd,currMax);
+            if(suffMul==0)
+            {
+                suffMul=1;
+            }
+            prefMul=prefMul*nums[i];
+            suffMul=suffMul*nums[n-i-1];
 
+            ans=Math.max(ans,Math.max(prefMul,suffMul));
         }
-        
-        return mxProd;
+
+        return ans;
     }
 }
